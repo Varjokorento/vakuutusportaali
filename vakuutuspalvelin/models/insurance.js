@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-
 var InsuranceSchema = new Schema({
     insurancetype: {
         type: String,
@@ -30,7 +29,6 @@ var InsuranceSchema = new Schema({
     notification: {
         type: Object
     }
-,
 }, {collection: 'insurances'});
 
 

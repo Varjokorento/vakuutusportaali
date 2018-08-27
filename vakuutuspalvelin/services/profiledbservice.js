@@ -6,7 +6,6 @@ function findAll() {
 }
 
 function findOneById(req, res, next) {
-    console.log(req.params._id);
     var id = req.params._id;
     Profile.findOne({_id: id}).then(profile => res.json(profile));
 }
@@ -38,4 +37,12 @@ function deleteProfile(req, res) {
 
 // here all kinds of features: update profile, update one part of a profile, delete profile ...
 
+<<<<<<< HEAD
 module.exports = {AddProfile, findAll, updateOneById, deleteOneById, findOneById};
+=======
+
+
+
+
+module.exports = {AddProfile, findAll, updateOneById, deleteOneById, findOneById, AddInsuranceToACustomer}
+>>>>>>> 1472a0b1a16963edde5658ab913a885426f7f001
