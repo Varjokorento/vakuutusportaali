@@ -8,8 +8,8 @@ class MyInsurance extends Component {
         return (
             <Grid>
                 <Jumbotron>
-                    <h2>Tervetuloa vakuutuksiin</h2>
-                    <p>Tervetuloa uuden ajan vakuutusyhtiöön</p>
+                    <h2>Oma sivu</h2>
+                    <p>Täällä näet omat vakuutuksesi ja voit muuttaa tietojasi</p>
                 </Jumbotron>
             </Grid>
         );
