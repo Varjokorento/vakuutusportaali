@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
+import axios from 'axios';
 
-class App extends Component {
+class DragandDrop extends Component {
 
   state = {
     vakuutukset: [{name: "Lapsivakuutus",
@@ -96,12 +96,19 @@ class App extends Component {
         insurancesToBeCalculated.push(vakuutukset.valitut[i].key)
       }
       console.log(insurancesToBeCalculated);
-      fetch('/', {
+      var data =JSON.stringify(insurancesToBeCalculated);
+      console.log(data);
+      axios.post('http://localhost:4000/calculator', {
+      body: data
+      }).then((res) => {console.log(res)});
+      /*
+      fetch('http://localhost:4000/calculator', {
         method: 'post',
-        body: JSON.stringify({insurances: insurancesToBeCalculated})
+        body: data
       }).then(function(response) {
         return response;
       });
+      */
     }
     
 
@@ -129,4 +136,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default DragandDrop;

@@ -52,6 +52,7 @@ app.use(require('express-session')({
 app.use('/', indexRouter);
 app.use('/profiili', profileRouter);
 app.use('/admin', handlerRouter);
+app.use('/calculator', calculatorRouter);
 
 
 // catch 404 and forward to error handler
