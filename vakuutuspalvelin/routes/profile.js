@@ -17,6 +17,15 @@ router.get('/omavakuutus/:vakuutusId', (req, res, next) => {
     res.json("This shows insurance")
 })
 
+router.get('/omavakuutus/paivita', (req, res, next) => {
+    res.json("this updates insurance")
+})
+
+router.post('/omavakuuts/paivitatietoja', (req, res, next) => {
+    res.json("this updates information")
+})
+
+
 
 
 module.exports = router; 

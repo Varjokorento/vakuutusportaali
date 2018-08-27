@@ -18,7 +18,19 @@ var InsuranceSchema = new Schema({
     expires: {
         type: String
     },
-
+    priceperyear: {
+        type: Number
+    },
+    deductible: {
+        type: Number
+    }, 
+    objectOfInsurance: {
+        type: Object
+    },
+    notification: {
+        type: Object
+    }
+,
 }, {collection: 'insurances'});
 
 
