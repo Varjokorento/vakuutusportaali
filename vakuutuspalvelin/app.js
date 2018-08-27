@@ -6,7 +6,7 @@ var logger = require('morgan');
 var methodOverride = require('method-override')
 var mongoose = require('mongoose');
 
-mongoose.connect("mongodb://localhost:27017/burger");
+mongoose.connect("mongodb://testi:testi123@ds123372.mlab.com:23372/devconnectorvarjis");
 
 mongoose.connection.on('connected', function() {
   console.log('Connection succesful');
@@ -19,8 +19,9 @@ mongoose.connection.on('error', function(err) {
 mongoose.Promise = global.Promise;
 
 
-var indexRouter = require('./routes/index');
-
+const indexRouter = require('./routes/index');
+const profileRouter = require('./routes/profile');
+const handlerRouter = require('./routes/handlerside')
 var app = express();
 
 // view engine setup
@@ -47,6 +48,8 @@ app.use(require('express-session')({
 }));
 
 app.use('/', indexRouter);
+app.use('/profiili', profileRouter);
+app.use('/admin', handlerRouter);
 
 
 // catch 404 and forward to error handler
