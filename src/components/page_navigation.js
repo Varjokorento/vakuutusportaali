@@ -22,7 +22,7 @@ class PageNavigation extends Component {
                         Vakuutukset
                         </NavItem>
                         <NavItem eventKey={3} componentClass={Link} href="/" to="/omavakuutus">
-                        Omat vakuutukset
+                        Kirjaudu sisään
                         </NavItem>
                     </Nav>
                </Navbar.Collapse>
