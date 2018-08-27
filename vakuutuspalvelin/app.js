@@ -22,6 +22,7 @@ mongoose.Promise = global.Promise;
 const indexRouter = require('./routes/index');
 const profileRouter = require('./routes/profileRoute');
 const insuranceRouter = require('./routes/insuranceRoute')
+const calculatorRouter = require('./routes/calculatorRoute');
 
 var app = express();
 
@@ -51,7 +52,7 @@ app.use(require('express-session')({
 app.use('/', indexRouter);
 app.use('/profiili', profileRouter);
 app.use('/insurances', insuranceRouter);
-
+app.use('/calculator', calculatorRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

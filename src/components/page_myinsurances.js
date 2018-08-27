@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Grid, Row, Col, Jumbotron } from 'react-bootstrap';
-
+import { Grid, Row, Col, Form, FormGroup, ControlLabel, FormControl, Checkbox, Button } from 'react-bootstrap';
+import DragandDrop from './DragandDrop';
 class MyInsurance extends Component {
 
     render() {
         return (
-            <Grid>
-                <Jumbotron>
-                    <h2>Oma sivu</h2>
-                    <p>Täällä näet omat vakuutuksesi ja voit muuttaa tietojasi</p>
-                </Jumbotron>
-            </Grid>
+            <div>
+                <Grid fluid className="splash">
+                    <Row className="show-grid text-center information">
+                        <Col xs={12} sm={12}>
+                          < DragandDrop /> 
+                        </Col>
+                    </Row>
+                </Grid>
+            </div>
         );
     }
 
