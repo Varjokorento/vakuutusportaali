@@ -5,45 +5,30 @@ var Schema = mongoose.Schema;
 var ProfileSchema = new Schema({
     name: {
         type: String,
-        required: [true, 'Nimi on pakollinen!']
+        required: [true]
     },
     address: {
         type: String,
-        required: [true, 'Osoite on pakollinen!']
+        required: [true] 
     },
     city: {
         type: String,
-        required: [true, 'Kaupunki on pakollinen!']
+        required: [true]
     },
     phone: {
-        type: String
+        type: String,
+        required: [true]
     },
-    insurances: [{
-        insurancetype: {
-            type: String,
-            required: [true, 'Otsikko on pakollinen!']
-        },
-        valid: {
-            type: Boolean,
-            required: [true, 'Arvosana on pakollinen!'],
-            min: [0, 'Yksi on pienin arvosana!'],
-            max: 5
-        },
-        nextPaymentDate: {
-            type: Date,
-            required: [true, 'Arvio on pakollinen!']
-        },
-        expires: {
-            type: Date,
-            required: [true, 'Lähettäjä on pakollinen!']
-        }
-    }]
+    insurances: {
+        type: Schema.Types.ObjectId,
+        ref: 'insurances'
+    }}
 
-}, {collection: 'profiles'});
+, {collection: 'profiles'});
 
 
 
 const Profile = mongoose.model('profiles', ProfileSchema);
 
 
-module.exports = Restaurant;
+module.exports = Profile;

@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
-
+const profiledbservice = require('../services/profiledbservice')
 //@Route /admin/dashboard
 //GET this shows the profile information
 //Private
 
-router.get('/admin/dashboard', function(req, res, next) {
+router.get('/dashboard', function(req, res, next) {
     res.json("Tänne tulee hallintapaneeli");
   })
 
@@ -13,8 +13,9 @@ router.get('/admin/dashboard', function(req, res, next) {
 //GET this shows the information of one information
 //Private
 
-router.get('/admin/dashboard/:cliendID', (req, res, next) => {
-    res.json("This shows a single client")
+router.get('/dashboard/:_id', (req, res, next) => {
+    console.log("This is id:" + req.params._id);
+    profiledbservice.findOneById(req, res);
 })
 
 
@@ -22,7 +23,7 @@ router.get('/admin/dashboard/:cliendID', (req, res, next) => {
 //POST this shows the information of one information
 //Private
 
-router.post('/admin/dashboard/:cliendID', (req, res, next) => {
+router.post('/dashboard/:cliendID', (req, res, next) => {
     res.json("This updates a single client")
 })
 

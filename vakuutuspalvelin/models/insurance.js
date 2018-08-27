@@ -38,4 +38,4 @@ var InsuranceSchema = new Schema({
 const Insurance = mongoose.model('insurances', InsuranceSchema);
 
 
-module.exports = Restaurant;
+module.exports = Insurance;
