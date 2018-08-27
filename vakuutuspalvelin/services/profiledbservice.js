@@ -37,12 +37,4 @@ function deleteProfile(req, res) {
 
 // here all kinds of features: update profile, update one part of a profile, delete profile ...
 
-<<<<<<< HEAD
-module.exports = {AddProfile, findAll, updateOneById, deleteOneById, findOneById};
-=======
-
-
-
-
 module.exports = {AddProfile, findAll, updateOneById, deleteOneById, findOneById, AddInsuranceToACustomer}
->>>>>>> 1472a0b1a16963edde5658ab913a885426f7f001
