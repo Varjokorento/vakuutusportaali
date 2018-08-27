@@ -21,7 +21,7 @@ mongoose.Promise = global.Promise;
 
 const indexRouter = require('./routes/index');
 const profileRouter = require('./routes/profileRoute');
-const handlerRouter = require('./routes/insuranceRoute');
+const handlerRouter = require('./routes/insuranceRoute')
 
 var app = express();
 
