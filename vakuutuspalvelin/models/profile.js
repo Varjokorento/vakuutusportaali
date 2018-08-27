@@ -18,28 +18,12 @@ var ProfileSchema = new Schema({
     phone: {
         type: String
     },
-    insurances: [{
-        insurancetype: {
-            type: String,
-            required: [true, 'Otsikko on pakollinen!']
-        },
-        valid: {
-            type: Boolean,
-            required: [true, 'Arvosana on pakollinen!'],
-            min: [0, 'Yksi on pienin arvosana!'],
-            max: 5
-        },
-        nextPaymentDate: {
-            type: Date,
-            required: [true, 'Arvio on pakollinen!']
-        },
-        expires: {
-            type: Date,
-            required: [true, 'Lähettäjä on pakollinen!']
-        }
-    }]
+    insurances: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+    }}
 
-}, {collection: 'profiles'});
+, {collection: 'profiles'});
 
 
 
