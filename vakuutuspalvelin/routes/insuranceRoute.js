@@ -23,7 +23,7 @@ router.get('/dashboard/:_id', (req, res, next) => {
 //POST this shows the information of one information
 //Private
 
-router.post('/dashboard/:cliendID', (req, res, next) => {
+router.post('/dashboard/:clientID', (req, res, next) => {
     res.json("This updates a single client")
 })
 

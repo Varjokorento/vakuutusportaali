@@ -25,4 +25,4 @@ function updateOneById(req, res) {
     });
 }
 
-
+module.exports = {updateOneById, findAndEdit, findAll, findOneById}

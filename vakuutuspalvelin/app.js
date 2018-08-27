@@ -20,8 +20,9 @@ mongoose.Promise = global.Promise;
 
 
 const indexRouter = require('./routes/index');
-const profileRouter = require('./routes/profile');
-const handlerRouter = require('./routes/handlerside')
+const profileRouter = require('./routes/profileRoute');
+const handlerRouter = require('./routes/insuranceRoute');
+
 var app = express();
 
 // view engine setup
