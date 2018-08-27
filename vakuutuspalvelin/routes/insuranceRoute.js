@@ -1,18 +1,21 @@
 const express = require('express');
 const router = express.Router();
-const service = require("../services/insurancedbservice");
+const insuranceService = require("../services/insurancedbservice");
 
 router.get("/:id", (req, res) => {
-    let insurance = service.findOneById(req.params.id);
+    let insurance = insuranceService.findOneById(req.params.id);
     res.json(insurance);
 });
 
-router.post("/", (req, res) => {
-    console.log("vakuutuksen postausfunktio");
-    let insurance = req.body;
-    console.log(insurance);
-    service.addOne(insurance);
+router.get("/user/:id", (req, res) => {
+    let insurances = insuranceService.findAllByUser(req.params.id);
+    res.json(insurances);
 });
 
+router.post("/", (req, res) => {
+    let insurance = req.body;
+    console.log(insurance);
+    insuranceService.addOne(insurance);
+});
 
 module.exports = router;

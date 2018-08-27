@@ -20,4 +20,4 @@ function addInsuranceType(req, res) {
 }
 
 
-module.exports = {findAll, addInsuranceType, findOneById}
+module.exports = {findAll, addInsuranceType, findOneById};

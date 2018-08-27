@@ -20,17 +20,15 @@ function findOneById(id) {
     });
 }
 
-function findAndEdit(req, res) {
-    Insurance.findById({_id: req.body.id}, (err, insurance) => {
-        res.json(insurance);
-    });
-}
-
 function updateOneById(req, res) {
     Insurance.findByIdAndUpdate({_id: req.body.id}, req.body, (err, insurance) => {
         res.send("Insurance updated");
     });
 }
 
-module.exports = {addOne, findAll, findOneById, findAndEdit, updateOneById};
+function findAllByUser(userId) {
+    let insurances = Insurance.find({userid: userId});
+}
+
+module.exports = {addOne, findAll, findOneById, updateOneById};
 
