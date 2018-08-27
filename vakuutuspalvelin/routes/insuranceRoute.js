@@ -7,7 +7,7 @@ const profiledbservice = require('../services/profiledbservice')
 
 router.get('/dashboard', function(req, res, next) {
     res.json("Tänne tulee hallintapaneeli");
-  })
+  });
 
 //@Route /omavakuutus/:vakuutusID
 //GET this shows the information of one information
@@ -16,7 +16,7 @@ router.get('/dashboard', function(req, res, next) {
 router.get('/dashboard/:_id', (req, res, next) => {
     console.log("This is id:" + req.params._id);
     profiledbservice.findOneById(req, res);
-})
+});
 
 
 //@Route /admin/dashboard/:clientID
@@ -25,6 +25,6 @@ router.get('/dashboard/:_id', (req, res, next) => {
 
 router.post('/dashboard/:cliendID', (req, res, next) => {
     res.json("This updates a single client")
-})
+});
 
 module.exports = router; 
