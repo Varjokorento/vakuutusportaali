@@ -1,30 +1,18 @@
-var express = require('express');
-var router = express.Router();
-const profiledbservice = require('../services/profiledbservice')
-//@Route /admin/dashboard
-//GET this shows the profile information
-//Private
+const express = require('express');
+const router = express.Router();
+const service = require("../services/insurancedbservice");
 
-router.get('/dashboard', function(req, res, next) {
-    res.json("Tänne tulee hallintapaneeli");
-  });
+router.get("/:id", (req, res) => {
+    let insurance = service.findOneById(req.params.id);
+    res.json(insurance);
+});
 
-//@Route /omavakuutus/:vakuutusID
-//GET this shows the information of one information
-//Private
-
-router.get('/dashboard/:_id', (req, res, next) => {
-    console.log("This is id:" + req.params._id);
-    profiledbservice.findOneById(req, res);
+router.post("/", (req, res) => {
+    console.log("vakuutuksen postausfunktio");
+    let insurance = req.body;
+    console.log(insurance);
+    service.addOne(insurance);
 });
 
 
-//@Route /admin/dashboard/:clientID
-//POST this shows the information of one information
-//Private
-
-router.post('/dashboard/:clientID', (req, res, next) => {
-    res.json("This updates a single client")
-});
-
-module.exports = router; 
+module.exports = router;

@@ -1,19 +1,27 @@
 const Insurance = require('../models/insurance');
 
+function addOne(data) {
+    console.log(data);
+    Insurance.create(data)
+        .then(promise => {
+            console.log("Insurance added");
+        })
+}
+
 function findAll(req, res) {
     Insurance.find({}, (err, insurances) => {
         res.json(insurances)
     });
 }
 
-function findOneById(req, res) {
+function findOneById(id) {
     Insurance.findById({_id: id}, (err, insurance) => {
-        res.json(insurance);
+        return insurance;
     });
 }
 
 function findAndEdit(req, res) {
-    Insurance.findOneById({_id: req.body.id}, (err, insurance) => {
+    Insurance.findById({_id: req.body.id}, (err, insurance) => {
         res.json(insurance);
     });
 }
@@ -24,10 +32,5 @@ function updateOneById(req, res) {
     });
 }
 
-<<<<<<< HEAD
-module.exports = {findAll, findOneById, findAndEdit, updateOneById};
+module.exports = {addOne, findAll, findOneById, findAndEdit, updateOneById};
 
-
-=======
-module.exports = {updateOneById, findAndEdit, findAll, findOneById}
->>>>>>> 1472a0b1a16963edde5658ab913a885426f7f001
