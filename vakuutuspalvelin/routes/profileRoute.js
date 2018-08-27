@@ -15,7 +15,7 @@ router.get('/omavakuutus', function(req, res, next) {
 
 router.get('/omavakuutus/:vakuutusId', (req, res, next) => {
     res.json("This shows insurance")
-})
+}) 
 
 router.get('/omavakuutus/paivita', (req, res, next) => {
     res.json("this updates insurance")

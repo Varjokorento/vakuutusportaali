@@ -1,10 +1,9 @@
 const Insurance = require('../models/insurance');
 
-
-function findAll (req, res) {
+function findAll(req, res) {
     Insurance.find({}, (err, insurances) => {
         res.json(insurances)
-    })   //findAllProfile
+    });
 }
 
 function findOneById(req, res) {
@@ -25,4 +24,10 @@ function updateOneById(req, res) {
     });
 }
 
+<<<<<<< HEAD
+module.exports = {findAll, findOneById, findAndEdit, updateOneById};
+
+
+=======
 module.exports = {updateOneById, findAndEdit, findAll, findOneById}
+>>>>>>> 1472a0b1a16963edde5658ab913a885426f7f001

@@ -4,15 +4,15 @@ var Schema = mongoose.Schema;
 var InsuranceSchema = new Schema({
     insurancetype: {
         type: String,
-        required: [true, 'Nimi on pakollinen!']
+        required: [true]
     },
     valid: {
         type: String,
-        required: [true, 'Osoite on pakollinen!']
+        required: [true]
     },
     nextPaymentDate: {
         type: String,
-        required: [true, 'Kaupunki on pakollinen!']
+        required: [true]
     },
     expires: {
         type: String
