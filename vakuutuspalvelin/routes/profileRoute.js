@@ -1,12 +1,13 @@
 var express = require('express');
 var router = express.Router();
 const profiledbservice = require('../services/profiledbservice')
-//@Route /omavakuutus
-//GET this shows the profile information
+//@Route /current
+//GET this shows the current profile information
 //Private
-
-router.get('/omavakuutus', function(req, res, next) {
-    res.json("Tänne tulee hallintapaneeli");
+//TODO THIS WILL CHANGE WHEN AUTHENTICATION IS ADDED
+router.get('/current/:_id', function(req, res, next) {
+    console.log("What up");
+    profiledbservice.findOneById(req, res)
   })
 
 //@Route /omavakuutus/:vakuutusID

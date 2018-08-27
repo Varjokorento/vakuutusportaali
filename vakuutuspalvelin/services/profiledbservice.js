@@ -7,6 +7,7 @@ function findAll() {
 
 function findOneById(req, res, next) {
     var id = req.params._id;
+    console.log("This is id: " + id);
     Profile.findOne({_id: id}).then(profile => res.json(profile));
 }
 
