@@ -26,7 +26,7 @@ class IndexPage extends Component {
             <Grid fluid className="info_cards">
                 <Row className="show-grid cards text-center">
                <Col xs={12} sm={4}>
-               <Image className="info_image" src="cycling.jpg" />
+               <Image className="info_image" src="cycling.jpg" responsive />
                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
                     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
                     when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
@@ -36,7 +36,7 @@ class IndexPage extends Component {
                     software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                </Col>
                <Col xs={12} sm={4}>
-               <Image className="info_image" src="cycling.jpg" />
+               <Image className="info_image" src="cycling.jpg" responsive />
                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
                     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
                     when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
@@ -46,7 +46,7 @@ class IndexPage extends Component {
                     software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                </Col>
                <Col xs={12} sm={4}>
-               <Image className="info_image" src="cycling.jpg" />
+               <Image className="info_image" src="cycling.jpg" responsive />
                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
                     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
                     when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
