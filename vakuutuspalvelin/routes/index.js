@@ -8,11 +8,11 @@ const generalinformationdbservice = require('../services/generalInformationDBSer
 //@ Route '/vakuutukset'
 // GET insurance page this shows all the available insurances
 // PUBLIC
-router.get('/vakuutukset', function(req, res, next) {
+router.get('/insurancetypes', function(req, res, next) {
   generalinformationdbservice.findAll(req, res);
 });
 
-router.post('/vakuutukset', (req, res, next) => {
+router.post('/insurancetypes', (req, res, next) => {
   generalinformationdbservice.addInsuranceType(req, res);
 });
 
@@ -23,8 +23,5 @@ router.post('/vakuutukset', (req, res, next) => {
 router.post('/vakuutuslaskuri', (req, res, next) => {
   res.json("This calculates the insurance and displays the cost")
 })
-
-
-
 
 module.exports = router;
