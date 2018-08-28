@@ -12,10 +12,37 @@ router.get("/user/:id", (req, res) => {
     res.json(insurances);
 });
 
+router.get("/", (req, res) => {
+    let insurances = insuranceService.findAll();
+    res.json(insurances);
+});
+
 router.post("/", (req, res) => {
     let insurance = req.body;
-    console.log(insurance);
-    insuranceService.addOne(insurance);
+    console.log("Insurance to be created:",insurance);
+    insuranceService.addOne(insurance)
+        .then((result, error) => {
+            if (result) {
+                res.status(201);
+                res.send(result);
+            } else {
+                res.status(201);
+                res.send("Error!");
+            }
+        });
+});
+
+router.put("/", (req, res) => {
+   let insurance = req.body;
+   console.log("Insurance to be updated:", insurance);
+   insuranceService.updateOneById(req.body);
+   res.status(200);
+   res.send("Updated");
+});
+
+router.delete("/:id", (req, res) => {
+   res.status(200);
+   res.send("Deleted");
 });
 
 module.exports = router;
