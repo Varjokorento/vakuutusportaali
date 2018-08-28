@@ -5,10 +5,11 @@ const insuranceService = require("../databaseServices/insurancedbservice");
 router.get("/:id", (req, res) => {
     insuranceService.findOneById(req.params.id)
         .then(insurance => {
-            if (insurance._id) {
-                console.log("Vakuutuksen ID:",insurance._id);
+            console.log("insurance", insurance);
+
+            if (insurance) {
                 res.json(insurance);
-                res.status(200)
+                res.status(200).send();
             }
 
             else {
@@ -61,17 +62,15 @@ router.post("/", (req, res) => {
 router.put("/", (req, res) => {
     insuranceService.updateOneById(req.body)
         .then(result => {
+            console.log("RESULT", result);
             res.status(200);
             res.json(result);
         })
 });
 
 router.delete("/:id", (req, res) => {
-    insuranceService.deleteOneById(req.params.id)
-        .then(result => {
-            console.log("poiston tulos", result);
-        })
-
+    insuranceService.deleteOneById(req.params.id);
+    res.status(204).send();
 });
 
 module.exports = router;
