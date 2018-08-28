@@ -96,7 +96,7 @@ class InsuranceIndex extends Component {
                             key={"avain"}
                             className="insurance_selector"
                         >
-                            <MenuItem eventKey="1">Matkavakuutus</MenuItem>
+                            <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Matkavakuutus">Matkavakuutus</MenuItem>
                         </DropdownButton>
 
 
@@ -105,11 +105,11 @@ class InsuranceIndex extends Component {
                             key={"avain"}
                             className="insurance_selector"
                         >
-                            <MenuItem eventKey="1">Vauva(raskaus)</MenuItem>
-                            <MenuItem eventKey="2">Lapsi(7 vrk - 14 v)</MenuItem>
-                            <MenuItem eventKey="3">Aikuinen</MenuItem>
-                            <MenuItem eventKey="4">Henkivakuutus</MenuItem>
-                            <MenuItem eventKey="5">Urheiluvakuutus</MenuItem>
+                            <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Vauva">Vauva(raskaus)</MenuItem>
+                            <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Lapsi">Lapsi(7 vrk - 14 v)</MenuItem>
+                            <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Aikuinen">Aikuinen</MenuItem>
+                            <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Henkivakuutus">Henkivakuutus</MenuItem>
+                            <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Urheiluvakuutus">Urheiluvakuutus</MenuItem>
                         </DropdownButton>
 
                         <DropdownButton
@@ -117,18 +117,12 @@ class InsuranceIndex extends Component {
                             key={"avain"}
                             className="insurance_selector"
                         >
-                            <MenuItem eventKey="1">Koira</MenuItem>
-                            <MenuItem eventKey="2">Kissa</MenuItem>
-                            <MenuItem eventKey="3">Hevonen</MenuItem>
+                            <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Koira">Koira</MenuItem>
+                            <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Kissa">Kissa</MenuItem>
+                            <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Hevonen">Hevonen</MenuItem>
+                            <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Dinosaurus">Dinosaurus</MenuItem>
                         </DropdownButton>
 
-                        <DropdownButton
-                            title="Nuorisopaketti"
-                            key={"avain"}
-                            className="insurance_selector"
-                        >
-                            <MenuItem eventKey="1">Nuorisopaketti (18 - 28v)</MenuItem>
-                        </DropdownButton>
                     </Row>
                     <Row>
                         {insuranceData}
