@@ -8,15 +8,18 @@ class DragandDrop extends Component {
     vakuutukset: [
             {name: "Lapsivakuutus",
             category: "Henkilövakuutukset",
-            bgcolor: "white"},
+            bgcolor: "white",
+            price: this.fetchPrice()},
 
             {name: "Tapaturma- ja sairausvakuutus",
             category: "Henkilövakuutukset",
-            bgcolor: "white"},
+            bgcolor: "white",
+            price: this.fetchPrice(this.category)},
 
             {name: "Vauvavakuutus",
             category: "Henkilövakuutukset",
-            bgcolor: "white"},
+            bgcolor: "white",
+            price: 6},
 
             {name: "Henkivakuutus",
             category: "Henkilövakuutukset",
@@ -94,7 +97,13 @@ class DragandDrop extends Component {
             category: "Eläimet",
             bgcolor: "white"},
 
-    ]}
+    ],
+    price: 0}
+
+    fetchPrice(category) {
+      console.log(category);
+      return 5;
+    }
 
     onDragOver = (e) => {
       e.preventDefault();
@@ -108,7 +117,8 @@ class DragandDrop extends Component {
       let id = ev.dataTransfer.getData("id");
       let vakuutukset = this.state.vakuutukset.filter((task) => {
           if (task.name == id) {
-                   task.category = cat;           
+                   task.category = cat;
+                   this.state.price += task.price;           
           }              
            return task;       
        });        
@@ -163,12 +173,23 @@ class DragandDrop extends Component {
       });
       */
     }
-    
+    let priceData;
+    if (this.state.price > 0 && this.state.price < 14) {
+        priceData =  <h1> Arvioitu hinta: {this.state.price} </h1>
+    } else if (this.state.price > 14 ) {
+      let originalPrice = this.state.price;
+      this.state.price = this.state.price * 0.75;
+      let discount = originalPrice - this.state.price;
+      priceData =  <h1> Arvioitu hinta: {this.state.price} SAIT MEGA-ALENNUKSEN ARVOLTAAN: {discount} </h1>
+    } else {
+        priceData = <p></p>
+    }
 
     return (
 
       <div>
       <h1 className="header">Vakuutukset</h1>
+      {priceData}
       <Grid fluid className="info_cards">
       <Row className="show-grid cards text-center">
       <div className="droppable" onDragOver={(e) => this.onDragOver(e)}
