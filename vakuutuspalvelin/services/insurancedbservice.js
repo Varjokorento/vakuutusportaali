@@ -1,7 +1,7 @@
 const Insurance = require('../models/insurance');
 
 function findOneById(id) {
-    Insurance.findById({_id: id}, (err, insurance) => {
+    return Insurance.findById({_id: id}, (err, insurance) => {
         return insurance;
     });
 }

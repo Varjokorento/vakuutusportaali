@@ -3,18 +3,25 @@ const router = express.Router();
 const insuranceService = require("../services/insurancedbservice");
 
 router.get("/:id", (req, res) => {
-    let insurance = insuranceService.findOneById(req.params.id);
-    res.json(insurance);
+    insuranceService.findOneById(req.params.id)
+        .then(insurance => {
+            res.json(insurance);
+        });
 });
 
 router.get("/user/:id", (req, res) => {
-    let insurances = insuranceService.findAllByUser(req.params.id);
-    res.json(insurances);
+    insuranceService.findAllByUser(req.params.id)
+        .then(insurances => {
+            res.json(insurances);
+        })
 });
 
 router.get("/", (req, res) => {
-    let insurances = insuranceService.findAll();
-    res.json(insurances);
+    insuranceService.findAll()
+        .then (insurances => {
+            console.log("Insurances fetched from server:", insurances);
+            res.json(insurances);
+        });
 });
 
 router.post("/", (req, res) => {
