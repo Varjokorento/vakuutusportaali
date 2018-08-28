@@ -25,8 +25,6 @@ var ProfileSchema = new Schema({
 
 , {collection: 'profiles'});
 
-
-
 const Profile = mongoose.model('profiles', ProfileSchema);
 
 

@@ -5,8 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var methodOverride = require('method-override')
 var mongoose = require('mongoose');
-
-mongoose.connect("mongodb://testi:testi123@ds123372.mlab.com:23372/devconnectorvarjis");
+const db = require('./config/keys').mongoURI;
+console.log(db);
+mongoose.connect(db);
 
 mongoose.connection.on('connected', function() {
   console.log('Connection succesful');
