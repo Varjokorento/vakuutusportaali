@@ -70,7 +70,7 @@ describe('Insurance REST', () => {
     it('should DELETE the insurance that was created', function () {
         return request(app)
             .delete("/insurances/" + id)
-            .expect(200);
+            .expect(204);
     });
 
     it('should not GET the insurance that was deleted', function () {

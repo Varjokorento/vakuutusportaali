@@ -30,17 +30,15 @@ function addOne(data) {
 
 function updateOneById(data) {
     return Insurance.findByIdAndUpdate({_id: data._id}, data, (err, insurance) => {
+        console.log("DATA", data);
         return data;
     });
 }
 
 function deleteOneById(id){
-    return Insurance.deleteOneById({_id: id})
-        .then(result => {
-            return result;
-        }).catch(error => {
-            return error;
-    })
+    Insurance.deleteOne({_id: id}, (err, result) => {
+        console.log("poistettu");
+    });
 }
 
 module.exports = {findOneById, findAllByUser, findAll, addOne, updateOneById, deleteOneById};
