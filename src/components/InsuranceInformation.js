@@ -7,8 +7,6 @@ export default class InsuranceInformation extends Component {
     insurancetobedisplayed: []
   }
 
-  onSelect
-
   render() {
     return (
       <div>
@@ -19,12 +17,12 @@ export default class InsuranceInformation extends Component {
                          <Panel id="collapsible-panel-example-2" defaultExpanded>
                                 <Panel.Heading>
                                     <Panel.Title toggle>
-                                        Vakuutus OTSIKKO
+                                        {this.props.selectedInformation.name}
                                 </Panel.Title>
                                 </Panel.Heading>
                                 <Panel.Collapse>
                                     <Panel.Body>
-                                    <p>MAINOS TEKSTI</p>
+                                    {this.props.selectedInformation.copyBlurb}
                                 </Panel.Body>
                                 </Panel.Collapse>
                             </Panel>
