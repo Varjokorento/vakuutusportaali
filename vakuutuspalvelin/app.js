@@ -5,8 +5,11 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var methodOverride = require('method-override')
 var mongoose = require('mongoose');
+const passport = require('passport');
+const db = require('./config/keys').mongoURI;
 
-mongoose.connect("mongodb://testi:testi123@ds123372.mlab.com:23372/devconnectorvarjis");
+//Database connection
+mongoose.connect(db);
 
 mongoose.connection.on('connected', function() {
   console.log('Connection succesful');
@@ -19,12 +22,21 @@ mongoose.connection.on('error', function(err) {
 mongoose.Promise = global.Promise;
 
 
+
 const indexRouter = require('./routes/index');
 const profileRouter = require('./routes/profileRoute');
 const insuranceRouter = require('./routes/insuranceRoute')
 const calculatorRouter = require('./routes/calculatorRoute');
 
 var app = express();
+
+//Passport settings
+
+// Passport middleware
+app.use(passport.initialize());
+
+// Passport Config
+require('./config/passport')(passport);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

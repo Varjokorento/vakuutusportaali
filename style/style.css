@@ -9,8 +9,17 @@
 }
 
 .draggable {
-    padding: 30px;
+    padding: 20px;
     opacity: 0.9;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.droppable {
+    margin: 30px;
+    background-color: #FFF;
+    opacity: 0.6;
+    padding: 10px 0px 10px 0px;
 }
 
 .information {
@@ -18,6 +27,13 @@
     padding-right: 150px;  
     padding-top: 150px;
     padding-bottom: 150px; 
+}
+
+.userprofile {
+    background-color: #FFF;
+    padding-top: 20px;
+    border-radius: 5px;
+    margin-bottom: 200px;
 }
 
 .information h3 {
@@ -45,12 +61,16 @@
     margin-top: 20px;
 }
 
-.info_insurances {
-    margin-top: 20px;
-}
-
 .insurance_selector {
     margin: 15px;
+}
+
+.insurance_category {
+    height: 370px;
+}
+
+.insurance_selector_vehicles {
+    height: 300px;
 }
 
 .info_image {

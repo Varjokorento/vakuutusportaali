@@ -38,7 +38,7 @@ class DragandDrop extends Component {
             category: "Ajoneuvovakuutukset",
             bgcolor: "white"},
 
-            {name: "Mopo",
+            {name: "Mopo, Mönkijä, Traktori, Moottorikelkka",
             category: "Ajoneuvovakuutukset",
             bgcolor: "white"},
 
@@ -50,14 +50,6 @@ class DragandDrop extends Component {
             category: "Ajoneuvovakuutukset",
             bgcolor: "white"},
 
-            {name: "Moottorikelkka",
-            category: "Ajoneuvovakuutukset",
-            bgcolor: "white"},
-
-            {name: "Mönkijä",
-            category: "Ajoneuvovakuutukset",
-            bgcolor: "white"},
-
             {name: "Perävaunu",
             category: "Ajoneuvovakuutukset",
             bgcolor: "white"},
@@ -66,15 +58,7 @@ class DragandDrop extends Component {
             category: "Ajoneuvovakuutukset",
             bgcolor: "white"},
 
-            {name: "Traktori",
-            category: "Ajoneuvovakuutukset",
-            bgcolor: "white"},
-
             {name: "Kuorma-auto",
-            category: "Ajoneuvovakuutukset",
-            bgcolor: "white"},
-
-            {name: "Museoajoneuvo",
             category: "Ajoneuvovakuutukset",
             bgcolor: "white"},
 
@@ -187,6 +171,12 @@ class DragandDrop extends Component {
       <h1 className="header">Vakuutukset</h1>
       <Grid fluid className="info_cards">
       <Row className="show-grid cards text-center">
+      <div className="droppable" onDragOver={(e) => this.onDragOver(e)}
+      onDrop={(e) => this.onDrop(e, "valitut")}>
+      <h4>Pudota vakuutukset tähän</h4>
+      <Button bsClass="insurance_button" onClick={sendChosenInsurancestoTheServer.bind(this)}> Submit </Button>
+      {vakuutukset.valitut}
+      </div>
       <Col xs={12} sm={4}>
       <div className="insurance_category" onDragOver={(e) => this.onDragOver(e)}
       onDrop={(e) => {this.onDrop(e, "Henkilövakuutukset")}}>
@@ -205,25 +195,17 @@ class DragandDrop extends Component {
 
       <Col xs={12} sm={4}>
       <div className="insurance_category" onDragOver={(e) => this.onDragOver(e)}
-      onDrop={(e) => {this.onDrop(e, "Ajoneuvovakuutukset")}}>
+      onDrop={(e) => {this.onDrop(e, "Kotivakuutukset")}}>
       <h3>Kotivakuutukset</h3>
       {vakuutukset.Kotivakuutukset}
       </div>
       </Col>
       </Row>
-      
-
-      <button className="hakubutton" onClick={sendChosenInsurancestoTheServer.bind(this)}> Submit </button>
-      <div className="droppable" onDragOver={(e) => this.onDragOver(e)}
-      onDrop={(e) => this.onDrop(e, "valitut")}>
-      <span className="task-header">Valitut vakuutukset</span>
-      {vakuutukset.valitut}
-      </div>
 
       <Row className="show-grid cards text-center">
       <Col xs={12} sm={4}>
       <div className="insurance_category" onDragOver={(e) => this.onDragOver(e)}
-      onDrop={(e) => {this.onDrop(e, "Henkilövakuutukset")}}>
+      onDrop={(e) => {this.onDrop(e, "Eläimet")}}>
       <h3>Eläinvakuutus</h3>
       {vakuutukset.Eläimet}
       </div>
