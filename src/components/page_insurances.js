@@ -7,20 +7,32 @@ import InsuranceInformation from './InsuranceInformation';
 class InsuranceIndex extends Component {
 
     state = {
-        arrayofInsurance : [],
-        selectedInsurance : []
+        arrayofInsurance : ["testi"],
+        insuranceToBeDisplayed : []
     }
 
     componentDidMount() {
-        this.axiosInsurance();
-    }
-
-   axiosInsurance() {
         axios.get("http://localhost:4000/insurancetypes")
         .then( res => {
-            const arrayofInsurance = res.data;
-            console.log(arrayofInsurance)
-            this.setState({arrayofInsurance});
+            const newArrayofInsurance = res.data;
+            this.setState({arrayofInsurance: newArrayofInsurance}, function () {
+                console.log(this.state.arrayofInsurance);
+            });
+        })
+    }
+
+ 
+    onSelect(e) {
+        let selectedInsurance;
+    
+        for(let i= 0; i < this.state.arrayofInsurance.length; i++) {
+            if(this.state.arrayofInsurance[i].name == e) {
+                selectedInsurance = this.state.arrayofInsurance[i]
+            }
+        }
+        console.log(selectedInsurance);
+        this.setState({insuranceToBeDisplayed: selectedInsurance}, () => {
+            console.log(this.state.insuranceToBeDisplayed)
         })
     }
 /*
@@ -30,13 +42,11 @@ class InsuranceIndex extends Component {
         this.setState({selectedInsurance})
     }
 */
-   
     
     render() {
         let insuranceData;
-
-        if(this.state.selectedInsurance.length != 0) {
-            insuranceData = <InsuranceInformation selectedInformation = {this.state.selectedInsurance}/>
+        if(this.state.insuranceToBeDisplayed.length != 0) {
+            insuranceData = <InsuranceInformation selectedInformation = {this.state.insuranceToBeDisplayed}/>
         } else  {
             insuranceData = <p></p>
         }
@@ -53,8 +63,8 @@ class InsuranceIndex extends Component {
                                 className="insurance_selector"
                                 id="vain"
                                 >
-                        <MenuItem eventKey="1">Henkilöauto</MenuItem>
-                        <MenuItem eventKey="2">Pakettiauto</MenuItem>
+                        <MenuItem  onSelect= {this.onSelect.bind(this)} eventKey="Henkilöauto">Henkilöauto</MenuItem>
+                        <MenuItem onSelect= {this.onSelect.bind(this)} eventKey="Pakettiauto">Pakettiauto</MenuItem>
                         <MenuItem eventKey="3">Moottoripyörä</MenuItem>
                         <MenuItem eventKey="4">Mopo</MenuItem>
                         <MenuItem eventKey="5">Matkailuauto</MenuItem>
