@@ -26,7 +26,6 @@ var ProfileSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'insurances'
     }]}
-
 , {collection: 'profiles'});
 
 const Profile = mongoose.model('profiles', ProfileSchema);

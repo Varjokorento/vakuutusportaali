@@ -1,15 +1,51 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Grid, Row, Col, DropdownButton, MenuItem } from 'react-bootstrap';
+import axios from 'axios';
+import InsuranceInformation from './InsuranceInformation';
 
 class InsuranceIndex extends Component {
+
+    state = {
+        arrayofInsurance : [],
+        selectedInsurance : []
+    }
+
+    componentDidMount() {
+        this.axiosInsurance();
+    }
+
+   axiosInsurance() {
+        axios.get("http://localhost:4000/insurancetypes")
+        .then( res => {
+            const arrayofInsurance = res.data;
+            console.log(arrayofInsurance)
+            this.setState({arrayofInsurance});
+        })
+    }
+/*
+    onSelect() {
+        let selectedInsurance = target.get.value;
+        selectedInsurance = arrayofInsurance.selectedInsurance;
+        this.setState({selectedInsurance})
+    }
+*/
+   
     
     render() {
+        let insuranceData;
+
+        if(this.state.selectedInsurance.length != 0) {
+            insuranceData = <InsuranceInformation selectedInformation = {this.state.selectedInsurance}/>
+        } else  {
+            insuranceData = <p></p>
+        }
+
+
         return (
             <div>
                 <Grid fluid className="splash">
                     <Row className="show-grid text-center information">
-
                         <h3>Valitse vakuutustyyppi</h3>
                         <DropdownButton
                                 title={"Ajoneuvovakuutukset"}
@@ -87,6 +123,9 @@ class InsuranceIndex extends Component {
                                 >
                         <MenuItem eventKey="1">Nuorisopaketti (18 - 28v)</MenuItem>
                         </DropdownButton>
+                    </Row>
+                    <Row>
+                       {insuranceData}
                     </Row>
                 </Grid>
          

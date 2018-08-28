@@ -9,7 +9,7 @@ router.get("/:id", (req, res) => {
         });
 });
 
-/* 
+/* THIS IS A PRELIMINARY PLAN FOR THE FEATURE
 router.get("/user/:id", passport.authenticate('jwt',
 {session: false}),  (req, res) => {
     if(req.user.role == "ADMIN") {
