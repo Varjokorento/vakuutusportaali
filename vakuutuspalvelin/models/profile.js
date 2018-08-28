@@ -6,6 +6,10 @@ var ProfileSchema = new Schema({
         type: String,
         required: [true]
     },
+    email: {
+        type: String,
+        required: [true]
+    },
     address: {
         type: String,
         required: [true] 
@@ -22,7 +26,6 @@ var ProfileSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'insurances'
     }]}
-
 , {collection: 'profiles'});
 
 const Profile = mongoose.model('profiles', ProfileSchema);
