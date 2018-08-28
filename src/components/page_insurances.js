@@ -3,29 +3,7 @@ import { Link } from 'react-router-dom';
 import { Grid, Row, Col, DropdownButton, MenuItem } from 'react-bootstrap';
 
 class InsuranceIndex extends Component {
-    constructor() {
-        super();
-        this.state = {
-            insurances: [],
-        };
-    }
-
-    componentDidMount() {
-        let initialInsurances = [];
-        fetch('http://localhost:4000/insurancetypes')
-            .then(response => {
-                return response.json();
-            }).then(insurance => {
-                initialInsurances = insurance.results.map((insurance) => {
-                    return insurance
-                });
-                console.log(initialInsurances);
-                this.setState({
-                    insurances: initialInsurances,
-                });
-            });
-    }
-
+    
     render() {
         return (
             <div>
