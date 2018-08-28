@@ -192,12 +192,14 @@ class DragandDrop extends Component {
       {priceData}
       <Grid fluid className="info_cards">
       <Row className="show-grid cards text-center">
+    
       <div className="droppable" onDragOver={(e) => this.onDragOver(e)}
       onDrop={(e) => this.onDrop(e, "valitut")}>
       <h4>Pudota vakuutukset tähän</h4>
       <Button bsClass="insurance_button" onClick={sendChosenInsurancestoTheServer.bind(this)}> Submit </Button>
       {vakuutukset.valitut}
       </div>
+      
       <Col xs={12} sm={4}>
       <div className="insurance_category" onDragOver={(e) => this.onDragOver(e)}
       onDrop={(e) => {this.onDrop(e, "Henkilövakuutukset")}}>
