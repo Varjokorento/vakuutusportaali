@@ -30,7 +30,6 @@ class InsuranceIndex extends Component {
                 selectedInsurance = this.state.arrayofInsurance[i]
             }
         }
-        console.log(selectedInsurance);
         this.setState({insuranceToBeDisplayed: selectedInsurance}, () => {
             console.log(this.state.insuranceToBeDisplayed)
         })
@@ -50,7 +49,6 @@ class InsuranceIndex extends Component {
         } else  {
             insuranceData = <p></p>
         }
-
 
         return (
             <div>
