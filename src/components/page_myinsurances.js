@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Grid, Row, Col, Form, FormGroup, ControlLabel, FormControl, Checkbox, Button } from 'react-bootstrap';
 import DragandDrop from './DragandDrop';
+
 class MyInsurance extends Component {
 
     render() {

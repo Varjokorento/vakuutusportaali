@@ -1,48 +1,115 @@
 import React, { Component } from 'react';
+import { Grid, Row, Col, Image, Button } from 'react-bootstrap';
 import axios from 'axios';
 
 class DragandDrop extends Component {
 
   state = {
-    vakuutukset: [{name: "Lapsivakuutus",
+    vakuutukset: [
+            {name: "Lapsivakuutus",
             category: "Henkilövakuutukset",
-            bgcolor: "green"},
+            bgcolor: "white"},
 
             {name: "Tapaturma- ja sairausvakuutus",
             category: "Henkilövakuutukset",
-            bgcolor: "green"},
+            bgcolor: "white"},
 
             {name: "Vauvavakuutus",
             category: "Henkilövakuutukset",
-            bgcolor: "green"},
+            bgcolor: "white"},
 
             {name: "Henkivakuutus",
             category: "Henkilövakuutukset",
-            bgcolor: "green"},
+            bgcolor: "white"},
 
             {name: "Matkavakuutus",
             category: "Henkilövakuutukset",
-            bgcolor: "green"},
+            bgcolor: "white"},
 
-            {name: "Autovakuutus",
+            {name: "Henkilöauto",
             category: "Ajoneuvovakuutukset",
-            bgcolor: "blue"},
+            bgcolor: "white"},
 
-            {name: "Liikennevakuutus",
+            {name: "Pakettiauto",
             category: "Ajoneuvovakuutukset",
-            bgcolor: "blue"},
+            bgcolor: "white"},
 
-            {name: "Pakettiautovakuutus",
+            {name: "Moottoripyörä",
             category: "Ajoneuvovakuutukset",
-            bgcolor: "blue"},
+            bgcolor: "white"},
 
-            {name: "Moottoripyörävakuutus",
+            {name: "Mopo",
             category: "Ajoneuvovakuutukset",
-            bgcolor: "blue"},
+            bgcolor: "white"},
 
-            {name: "Kuorma-autovakuutus",
+            {name: "Matkailuauto",
             category: "Ajoneuvovakuutukset",
-            bgcolor: "blue"}
+            bgcolor: "white"},
+
+            {name: "Matkailuvaunu",
+            category: "Ajoneuvovakuutukset",
+            bgcolor: "white"},
+
+            {name: "Moottorikelkka",
+            category: "Ajoneuvovakuutukset",
+            bgcolor: "white"},
+
+            {name: "Mönkijä",
+            category: "Ajoneuvovakuutukset",
+            bgcolor: "white"},
+
+            {name: "Perävaunu",
+            category: "Ajoneuvovakuutukset",
+            bgcolor: "white"},
+
+            {name: "Vene",
+            category: "Ajoneuvovakuutukset",
+            bgcolor: "white"},
+
+            {name: "Traktori",
+            category: "Ajoneuvovakuutukset",
+            bgcolor: "white"},
+
+            {name: "Kuorma-auto",
+            category: "Ajoneuvovakuutukset",
+            bgcolor: "white"},
+
+            {name: "Museoajoneuvo",
+            category: "Ajoneuvovakuutukset",
+            bgcolor: "white"},
+
+            {name: "Kerros- ja rivitalo",
+            category: "Kotivakuutukset",
+            bgcolor: "white"},
+            
+            {name: "Omakotitalo",
+            category: "Kotivakuutukset",
+            bgcolor: "white"},
+
+            {name: "Paritalo",
+            category: "Kotivakuutukset",
+            bgcolor: "white"},
+
+            {name: "Mökki",
+            category: "Kotivakuutukset",
+            bgcolor: "white"},
+
+            {name: "Sijoitusasunto",
+            category: "Kotivakuutukset",
+            bgcolor: "white"},
+
+            {name: "Koira",
+            category: "Eläimet",
+            bgcolor: "white"},
+
+            {name: "Kissa",
+            category: "Eläimet",
+            bgcolor: "white"},
+
+            {name: "Hevonen",
+            category: "Eläimet",
+            bgcolor: "white"},
+
     ]}
 
     onDragOver = (e) => {
@@ -72,6 +139,8 @@ class DragandDrop extends Component {
     var vakuutukset = {
       Henkilövakuutukset: [],
       Ajoneuvovakuutukset: [],
+      Kotivakuutukset: [],
+      Eläimet: [],
       valitut: []
     }
 
@@ -113,24 +182,55 @@ class DragandDrop extends Component {
     
 
     return (
-      <div className="App">
-      <h2 className="header">Vakuutukset</h2>
-      <div className="kategoria" onDragOver={(e) => this.onDragOver(e)}
+
+      <div>
+      <h1 className="header">Vakuutukset</h1>
+      <Grid fluid className="info_cards">
+      <Row className="show-grid cards text-center">
+      <Col xs={12} sm={4}>
+      <div className="insurance_category" onDragOver={(e) => this.onDragOver(e)}
       onDrop={(e) => {this.onDrop(e, "Henkilövakuutukset")}}>
-      <span className="task-header">Henkilövakuutukset</span>
+      <h3>Henkilövakuutukset</h3>
       {vakuutukset.Henkilövakuutukset}
       </div>
+      </Col>
+
+      <Col xs={12} sm={4}>
+      <div className="insurance_category" onDragOver={(e) => this.onDragOver(e)}
+      onDrop={(e) => {this.onDrop(e, "Ajoneuvovakuutukset")}}>
+      <h3>Ajoneuvovakuutukset</h3>
+      {vakuutukset.Ajoneuvovakuutukset}
+      </div>
+      </Col>
+
+      <Col xs={12} sm={4}>
+      <div className="insurance_category" onDragOver={(e) => this.onDragOver(e)}
+      onDrop={(e) => {this.onDrop(e, "Ajoneuvovakuutukset")}}>
+      <h3>Kotivakuutukset</h3>
+      {vakuutukset.Kotivakuutukset}
+      </div>
+      </Col>
+      </Row>
+      
+
       <button className="hakubutton" onClick={sendChosenInsurancestoTheServer.bind(this)}> Submit </button>
       <div className="droppable" onDragOver={(e) => this.onDragOver(e)}
       onDrop={(e) => this.onDrop(e, "valitut")}>
       <span className="task-header">Valitut vakuutukset</span>
       {vakuutukset.valitut}
-        </div>
-      <div className="kategoria" onDragOver={(e) => this.onDragOver(e)}
-      onDrop={(e) => {this.onDrop(e, "Ajoneuvovakuutukset")}}>
-      <span className="task-header">Ajoneuvovakuutukset</span>
-      {vakuutukset.Ajoneuvovakuutukset}
       </div>
+
+      <Row className="show-grid cards text-center">
+      <Col xs={12} sm={4}>
+      <div className="insurance_category" onDragOver={(e) => this.onDragOver(e)}
+      onDrop={(e) => {this.onDrop(e, "Henkilövakuutukset")}}>
+      <h3>Eläinvakuutus</h3>
+      {vakuutukset.Eläimet}
+      </div>
+      </Col>
+      </Row>
+
+      </Grid>
       </div>
     );
   }
