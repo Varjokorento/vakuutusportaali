@@ -14,6 +14,7 @@ router.get("/user/:id", (req, res) => {
 
 router.get("/", (req, res) => {
     let insurances = insuranceService.findAll();
+    console.log(insurances)
     res.json(insurances);
 });
 

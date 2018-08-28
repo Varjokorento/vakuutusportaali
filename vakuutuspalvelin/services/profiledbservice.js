@@ -6,6 +6,7 @@ function findAll() {
 }
 
 function findOneById(req, res, next) {
+    console.log("Are we here?")
     let id = req.params._id;
     Profile.findOne({_id: id})
     .populate("profilesinsurances")

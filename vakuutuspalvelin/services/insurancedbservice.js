@@ -13,10 +13,14 @@ function findAllByUser(userId) {
 }
 
 function findAll() {
-    return Insurance.find({}, (err, insurances) => {
+    let insurances = [];
+    insurances = Insurance.find({}, (err, insurances) => {
         if (err) throw err;
+       
         return insurances;
     });
+    console.log(insurances);
+    return insurances;
 }
 
 function addOne(data) {
