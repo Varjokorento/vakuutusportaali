@@ -50,7 +50,6 @@ class InsuranceIndex extends Component {
             insuranceData = <p></p>
         }
 
-
         return (
             <div>
                 <Grid fluid className="splash">
