@@ -30,7 +30,7 @@ export default class InsuranceInformation extends Component {
                             <Panel id="collapsible-panel-example-2">
                                 <Panel.Heading>
                                     <Panel.Title toggle>
-                                       Ehdot 
+                                       {this.props.selectedInformation.conditionsUrl}
                                 </Panel.Title>
                                 </Panel.Heading>
                                 <Panel.Collapse>
