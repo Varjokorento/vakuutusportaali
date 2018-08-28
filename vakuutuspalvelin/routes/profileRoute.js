@@ -12,19 +12,10 @@ const User = require('../models/User');
 //Private
 //TODO THIS WILL CHANGE WHEN AUTHENTICATION IS ADDED
 
-router.get('/current/:_id', passport.authenticate('jwt',
+router.get('/current', passport.authenticate('jwt',
 {session: false}), (req, res) => {
-    console.log("waht")
     profiledbservice.findOneById(req, res)
   });
-
-router.get('/torrent', passport.authenticate('jwt',
-{session: false}), (req, res) => {
-    res.json({
-        id: req.user.id,
-        name: req.user.name,
-        email: req.user.email});
-})
 
 
 /*router.get('/current', passport.authenticate('jwt',
@@ -51,17 +42,18 @@ router.post('/omavakuutus/paivitatietoja', (req, res, next) => {
     res.json("this updates information")
 })
 
+
 router.post('/luoprofiili', (req, res, next) => {
     profiledbservice.AddProfile(req, res);
 })
 
 router.post('/login', (req, res) => {
     const errors = {};
-
     const email = req.body.email;
     const password = req.body.password;
-  
-    // Find user by email
+
+    // Find user by email TODO REPLACE WITH OAUTH
+    
     User.findOne({ email }).then(user => {
       // Check for user
       if (!user) {

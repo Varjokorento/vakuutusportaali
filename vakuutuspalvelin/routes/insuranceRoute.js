@@ -9,7 +9,21 @@ router.get("/:id", (req, res) => {
         });
 });
 
-router.get("/user/:id", (req, res) => {
+/* 
+router.get("/user/:id", passport.authenticate('jwt',
+{session: false}),  (req, res) => {
+    if(req.user.role == "ADMIN") {
+    insuranceService.findAllByUser(req.params.id)
+        .then(insurances => {
+            res.json(insurances);
+        })
+    } else {
+        res.send("unauthorized")
+    }
+});
+*/
+
+router.get("/user/:id",  (req, res) => {
     insuranceService.findAllByUser(req.params.id)
         .then(insurances => {
             res.json(insurances);
