@@ -8,13 +8,14 @@ router.get("/:id", (req, res) => {
             console.log("insurance", insurance);
 
             if (insurance) {
+                console.log("insu:", insurance);
                 res.json(insurance);
                 res.status(200).send();
             }
 
             else {
                 res.send("Not Found");
-                res.status(204);
+                res.status(404);
             }
         });
 });
