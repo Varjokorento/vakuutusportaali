@@ -11,7 +11,7 @@ export default class InsuranceInformation extends Component {
     return (
       <div>
          <Grid fluid>
-                    <Row className="show-grid information">
+                    <Row className="show-grid information_box">
                         <Col xs={12} sm={2}></Col>
                         <Col xs={12} sm={8} className="userprofile">
                          <Panel id="collapsible-panel-example-2" defaultExpanded>
