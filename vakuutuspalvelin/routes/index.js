@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const generalinformationdbservice = require('../services/generalInformationDBService');
+const generalinformationdbservice = require('../databaseServices/generalInformationDBService');
 
 router.get('/insurancetypes', function(req, res, next) {
   generalinformationdbservice.findAll(req, res);

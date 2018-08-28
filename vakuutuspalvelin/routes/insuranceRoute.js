@@ -1,11 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const insuranceService = require("../services/insurancedbservice");
+const insuranceService = require("../databaseServices/insurancedbservice");
 
 router.get("/:id", (req, res) => {
     insuranceService.findOneById(req.params.id)
         .then(insurance => {
-            res.json(insurance);
+            if (insurance._id) {
+                console.log("Vakuutuksen ID:",insurance._id);
+                res.json(insurance);
+                res.status(200)
+            }
+
+            else {
+                res.send("Not Found");
+                res.status(204);
+            }
         });
 });
 
@@ -19,15 +28,12 @@ router.get("/user/:id", (req, res) => {
 router.get("/", (req, res) => {
     insuranceService.findAll()
         .then (insurances => {
-            console.log("Insurances fetched from server:", insurances);
             res.json(insurances);
         });
 });
 
 router.post("/", (req, res) => {
-    let insurance = req.body;
-    console.log("Insurance to be created:", insurance);
-    insuranceService.addOne(insurance)
+    insuranceService.addOne(req.body)
         .then(result => {
             if (result.errors) {
                 res.status(400);
@@ -39,16 +45,19 @@ router.post("/", (req, res) => {
 });
 
 router.put("/", (req, res) => {
-    let insurance = req.body;
-    console.log("Insurance to be updated:", insurance);
-    insuranceService.updateOneById(req.body);
-    res.status(200);
-    res.send("Updated");
+    insuranceService.updateOneById(req.body)
+        .then(result => {
+            res.status(200);
+            res.json(result);
+        })
 });
 
 router.delete("/:id", (req, res) => {
-    res.status(200);
-    res.send("Deleted");
+    insuranceService.deleteOneById(req.params.id)
+        .then(result => {
+            console.log("poiston tulos", result);
+        })
+
 });
 
 module.exports = router;

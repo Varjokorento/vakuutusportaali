@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const profiledbservice = require('../services/profiledbservice');
+const profiledbservice = require('../databaseServices/profiledbservice');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const keys = require('../config/keys');
