@@ -6,7 +6,6 @@ const profiledbservice = require('../services/profiledbservice')
 //Private
 //TODO THIS WILL CHANGE WHEN AUTHENTICATION IS ADDED
 router.get('/current/:_id', function(req, res, next) {
-    console.log("What up");
     profiledbservice.findOneById(req, res)
   })
 

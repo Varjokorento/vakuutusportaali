@@ -7,7 +7,9 @@ function findAll() {
 
 function findOneById(req, res, next) {
     let id = req.params._id;
-    Profile.findOne({_id: id}).then(profile => res.json(profile));
+    Profile.findOne({_id: id})
+    .populate("profilesinsurances")
+    .then(profile => res.json(profile));
 }
 
 function updateOneById(req, res) {

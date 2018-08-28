@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-
 var ProfileSchema = new Schema({
     name: {
         type: String,
@@ -19,10 +18,10 @@ var ProfileSchema = new Schema({
         type: String,
         required: [true]
     },
-    insurances: {
+    profilesinsurances: [{
         type: Schema.Types.ObjectId,
         ref: 'insurances'
-    }}
+    }]}
 
 , {collection: 'profiles'});
 
