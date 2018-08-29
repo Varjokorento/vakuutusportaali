@@ -8,7 +8,7 @@ class InsuranceIndex extends Component {
     state = {
         arrayofInsurance: ["testi"],
         insuranceToBeDisplayed: []
-    }
+    };
 
     componentDidMount() {
         axios.get("http://localhost:4000/insurancetypes")

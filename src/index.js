@@ -27,10 +27,7 @@ if(localStorage.jwtToken) {
 
   // Set user and isAuthenticated
   store.dispatch(setCurrentUser(decoded));
-
 }
-
-
 
 ReactDOM.render(
   <Provider store={ store }>
