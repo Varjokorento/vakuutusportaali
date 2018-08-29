@@ -31,10 +31,6 @@ mongoose.connection.on('error', function(err) {
 
 mongoose.Promise = global.Promise;
 
-//MOngoose imports
-
-
-
 //Passport settings
 
 // Passport middleware
@@ -48,6 +44,7 @@ require('./config/passport')(passport);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+//ALLOWS CORS
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET, PUT, DELETE, POST, OPTIONS");
@@ -66,7 +63,7 @@ app.use(require('express-session')({
   resave: false,
   saveUninitialized: false
 }));
-
+//ROUTES
 app.use('/', adminRouter);
 app.use('/customerprofile', insuranceProfileRoute);
 app.use('/document', adminInsuranceRoute);

@@ -1,9 +1,13 @@
 const express = require('express');
 const Profile = require('../models/profile');
 
+//FINDS ALL PROFILES
+
 function findAll() {
     //findAllProfile
 }
+
+// FINDS PROFILE BY ID
 
 function findOneById(req, res, next) {
     let id = req.param._id
@@ -12,13 +16,19 @@ function findOneById(req, res, next) {
         .then(profile => res.json(profile));
 }
 
+//UPDATES A PROFILE BY ID
+
 function updateOneById(req, res) {
 
 }
 
+//DELETES BY ID
+
 function deleteOneById(req, res) {
 
 }
+
+//ADDSS INSURANCE TO THE CUSTOMER
 
 function AddInsuranceToACustomer(req, res) {
     /* The following should happen: 1) Insurance is created and added to the database. 2) InsuranceID
