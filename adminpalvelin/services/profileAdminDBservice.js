@@ -29,6 +29,15 @@ function AddInsuranceToACustomer(req, res) {
     });
 }
 
+function updateCustomerById(data) {
+    console.log(data);
+    return Profile.findByIdAndUpdate({_id: data._id}, data, (err, profile) => {
+        console.log("DATA", data);
+        console.log('PROFILE', profile);
+        return data;
+    });
+}
+
 function AddProfile(req, res) {
     Profile.create(req.body)
         .then(res.send("Profile created"));
@@ -42,4 +51,4 @@ function deleteProfile(req, res) {
 
 // here all kinds of features: update profile, update one part of a profile, delete profile ...
 
-module.exports = {AddProfile, findAll, updateOneById, deleteOneById, findOneById, AddInsuranceToACustomer}
+module.exports = {AddProfile, findAll, updateCustomerById, updateOneById, deleteOneById, findOneById, AddInsuranceToACustomer}
