@@ -3,7 +3,6 @@ const Admin = require('../models/Admin');
 
 
 function findOneById(req, res, next) {
-    console.log(req.user)
     let email = req.user.email
     console.log(email);
     Admin.findOne({email: email})

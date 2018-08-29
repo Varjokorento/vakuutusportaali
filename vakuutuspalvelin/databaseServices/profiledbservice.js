@@ -7,6 +7,7 @@ function findAll() {
 
 function findOneById(req, res, next) {
     let email = req.user.email
+    console.log(email)
     Profile.findOne({email: email})
         .populate("profilesinsurances")
         .then(profile => res.json(profile));

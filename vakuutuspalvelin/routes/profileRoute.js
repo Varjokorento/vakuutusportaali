@@ -42,6 +42,11 @@ router.post('/omavakuutus/paivitatietoja', (req, res, next) => {
     res.json("this updates information")
 })
 
+router.get('/testi', passport.authenticate('jwt',
+{session: false}), (req, res) => {
+    res.json("Testi toimii")
+})
+
 
 router.post('/luoprofiili', (req, res, next) => {
     profiledbservice.AddProfile(req, res);

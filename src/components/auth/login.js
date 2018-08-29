@@ -3,6 +3,7 @@ import { Form, FormGroup, FormControl, Button, Col, ControlLabel } from 'react-b
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/authActions';
+import axios from 'axios';
 
 class Login extends Component {
     constructor() {
@@ -36,6 +37,10 @@ class Login extends Component {
         this.props.loginUser(userData);
     }
 
+    testAuth() {
+        axios.get("http://localhost:4000/profiili/current")
+        .then((res) => {console.log(res)});
+    }
 
     render() {
         return (
@@ -75,6 +80,7 @@ class Login extends Component {
                         </Col>
                     </FormGroup>
                 </Form>
+                <button onClick={this.testAuth}> Submit </button>
             </div>
         );
     }

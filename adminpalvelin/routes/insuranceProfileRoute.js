@@ -7,6 +7,7 @@ const keys = require('../config/keys');
 const passport = require('passport');
 const User = require('../models/User');
 
+
 //@Route /current
 //GET this shows the current profile information
 //Private
@@ -21,9 +22,6 @@ router.get('/:id', passport.authenticate('jwt',
 //GET this shows the information of one information
 //Private
 
-router.get('/omavakuutus/:vakuutusId', (req, res, next) => {
-    res.json("This shows insurance")
-}) 
 
 router.get('/:id/paivita', (req, res, next) => {
     res.json("this updates insurance")
