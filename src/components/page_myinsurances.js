@@ -1,8 +1,27 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Grid, Row, Col, Panel } from 'react-bootstrap';
+import axios from 'axios';
 
 class MyInsurance extends Component {
+
+    state = {
+        profile: ""
+    }
+
+    componentWillMount() {
+        this.fetchProfileInformation();
+        console.log(this.state.profile.profilesinsurances);
+    }
+
+    fetchProfileInformation() {
+            axios.get("http://localhost:4000/profiili/current")
+            .then(res => {
+                let profile = res.data
+                this.setState ({ profile: profile}, function () {
+                    console.log(this.state.profile)})})};
+               
+    
 
     render() {
         return (
@@ -20,22 +39,21 @@ class MyInsurance extends Component {
                                 </Panel.Heading>
                                 <Panel.Collapse>
                                     <Panel.Body>
-                                    <p>Nimi: Joonas Venäläinen</p>
-                                    <p>Henkilötunnus: 141289-xxxx</p>
-                                    <p>Puh: 0504063577</p>
+                                    <p>{this.state.profile.email}</p>
+                                    <p>{this.state.profile.name}</p>
+                                    <p>{this.state.profile.phone}</p>
                                 </Panel.Body>
                                 </Panel.Collapse>
                             </Panel>
 
                             <Panel id="collapsible-panel-example-2">
                                 <Panel.Heading>
-                                    <Panel.Title toggle>
-                                        Vakuutukset
+                                    <Panel.Title toggle>       
+                                <p>Vakuutukset</p> 
                                 </Panel.Title>
                                 </Panel.Heading>
                                 <Panel.Collapse>
                                     <Panel.Body>
-                                        Tänne tulee vakuutukset
                                 </Panel.Body>
                                 </Panel.Collapse>
                             </Panel>
