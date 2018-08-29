@@ -3,11 +3,12 @@ const Admin = require('../models/Admin');
 
 
 function findOneById(req, res, next) {
-    let email = req.admin.email
+    console.log(req.user)
+    let email = req.user.email
+    console.log(email);
     Admin.findOne({email: email})
         .then(profile => res.json(profile));
 }
-
 
 function AddAdmin(req, res) {
     Admin.create(req.body)
