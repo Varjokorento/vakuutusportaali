@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 //Create Schema
 
-const AdminSchema = new Schema({
+const UserSchema = new Schema({
      email: {
          type: String,
          required: true
@@ -18,5 +18,5 @@ const AdminSchema = new Schema({
      }
     });
     
-module.exports = Admin = mongoose.model('admins', AdminSchema);
+module.exports = User = mongoose.model('users', UserSchema);
 

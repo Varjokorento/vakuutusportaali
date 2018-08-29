@@ -9,6 +9,8 @@ const passport = require('passport');
 const db = require('./config/keys').mongoURI;
 
 const adminRouter = require('./routes/adminRoute');
+const insuranceProfileRoute = require('./routes/insuranceProfileRoute');
+
 
 
 
@@ -61,6 +63,7 @@ app.use(require('express-session')({
 }));
 
 app.use('/', adminRouter);
+app.use('/customerprofile', insuranceProfileRoute);
 
 
 // catch 404 and forward to error handler
