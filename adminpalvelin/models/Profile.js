@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var insurances = require('../models/Insurance');
+
 var ProfileSchema = new Schema({
     name: {
         type: String,

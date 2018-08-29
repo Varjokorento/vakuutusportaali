@@ -10,6 +10,7 @@ const db = require('./config/keys').mongoURI;
 
 const adminRouter = require('./routes/adminRoute');
 const insuranceProfileRoute = require('./routes/insuranceProfileRoute');
+const adminInsuranceRoute = require('./routes/adminInsuranceRoute');
 
 
 
@@ -29,6 +30,10 @@ mongoose.connection.on('error', function(err) {
 })
 
 mongoose.Promise = global.Promise;
+
+//MOngoose imports
+
+
 
 //Passport settings
 
@@ -64,7 +69,7 @@ app.use(require('express-session')({
 
 app.use('/', adminRouter);
 app.use('/customerprofile', insuranceProfileRoute);
-
+app.use('/document', adminInsuranceRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

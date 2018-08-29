@@ -1,15 +1,12 @@
 const Insurance = require('../models/insurance');
 
-function findOneById(id) {
-    return Insurance.findById({_id: id}, (err, insurance) => {
-        return insurance;
-    });
+function findOneById(req, res) {
+    Insurance.findById({_id: req.params.id}).then(insurance => res.json(insurance))
 }
 
-function findAllByUser(userId) {
-    let insurances = Insurance.find({userid: userId});
-    if (insurances) return insurances;
-    else return ["Cannot find user with ID:", userId];
+function findAllByUserID(req, res) {
+    Insurance.find({userid: req.params.id})
+    .then((insurance) => {res.json(insurance)})
 }
 
 function findAll() {
@@ -41,5 +38,5 @@ function deleteOneById(id){
     });
 }
 
-module.exports = {findOneById, findAllByUser, findAll, addOne, updateOneById, deleteOneById};
+module.exports = {findOneById, findAllByUserID, findAll, addOne, updateOneById, deleteOneById};
 
