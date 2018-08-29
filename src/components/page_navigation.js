@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Nav, Navbar, MenuItem, NavDropdown, NavItem, Grid } from 'react-bootstrap';
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
+import {Nav, Navbar, MenuItem, NavDropdown, NavItem, Grid} from 'react-bootstrap';
 
 class PageNavigation extends Component {
     render() {
         return (
-     
+
             <Navbar fluid collapseOnSelect className="nav_custom">
                 <Navbar.Header>
                     <Navbar.Brand>
@@ -16,18 +16,23 @@ class PageNavigation extends Component {
                 <Navbar.Collapse>
                     <Nav pullRight>
                         <NavItem eventKey={1} componentClass={Link} href="/" to="/">
-                        Etusivu
+                            Etusivu
                         </NavItem>
                         <NavItem eventKey={2} componentClass={Link} href="/vakuutukset" to="/vakuutukset">
-                        Vakuutukset
+                            Vakuutukset
                         </NavItem>
                         <NavItem eventKey={3} componentClass={Link} href="/" to="/omavakuutus">
-                        Kirjaudu sisään
+                            Oma sivu
+                        </NavItem>
+                        <NavItem eventKey={4} componentClass={Link} href="/" to="/kirjaudu">
+                            Kirjaudu sisään
+                        </NavItem><NavItem eventKey={5} componentClass={Link} href="/" to="/rekisteroidy">
+                            Rekisteröidy
                         </NavItem>
                     </Nav>
-               </Navbar.Collapse>
+                </Navbar.Collapse>
             </Navbar>
-         
+
         )
     }
 }
