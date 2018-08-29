@@ -73,6 +73,7 @@
 
 .insurance_category {
     height: 370px;
+    display: inline;
 }
 
 .insurance_selector_vehicles {
