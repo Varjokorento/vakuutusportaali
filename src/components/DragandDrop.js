@@ -164,21 +164,14 @@ class DragandDrop extends Component {
       axios.post('http://localhost:4000/calculator', {
       body: data
       }).then((res) => {console.log(res)});
-      /*
-      fetch('http://localhost:4000/calculator', {
-        method: 'post',
-        body: data
-      }).then(function(response) {
-        return response;
-      });
-      */
+ 
     }
     let priceData;
     if (this.state.price > 0 && this.state.price < 14) {
         priceData =  <h1> Arvioitu hinta: {this.state.price} </h1>
     } else if (this.state.price > 14 ) {
       let originalPrice = this.state.price;
-      this.state.price = this.state.price * 0.75;
+      this.state.price = originalPrice * 0.75;
       let discount = originalPrice - this.state.price;
       priceData =  <h1> Arvioitu hinta: {this.state.price} SAIT MEGA-ALENNUKSEN ARVOLTAAN: {discount} </h1>
     } else {
