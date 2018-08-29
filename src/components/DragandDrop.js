@@ -4,166 +4,36 @@ import axios from 'axios';
 
 class DragandDrop extends Component {
 
-    constructor(){
-        super();
-        state = {
-            insurances: [],
-            price: 0
-        }
-    }
-
     state = {
-        insurances: [
-            {
-                name: "Lapsivakuutus",
-                category: "Henkilövakuutukset",
-                bgcolor: "white",
-                price: this.fetchPrice()
-            },
-
-            {
-                name: "Tapaturma- ja sairausvakuutus",
-                category: "Henkilövakuutukset",
-                bgcolor: "white",
-                price: this.fetchPrice(this.category)
-            },
-
-            {
-                name: "Vauvavakuutus",
-                category: "Henkilövakuutukset",
-                bgcolor: "white",
-                price: 6
-            },
-
-            {
-                name: "Henkivakuutus",
-                category: "Henkilövakuutukset",
-                bgcolor: "white"
-            },
-
-            {
-                name: "Matkavakuutus",
-                category: "Henkilövakuutukset",
-                bgcolor: "white"
-            },
-
-            {
-                name: "Henkilöauto",
-                category: "Ajoneuvovakuutukset",
-                bgcolor: "white"
-            },
-
-            {
-                name: "Pakettiauto",
-                category: "Ajoneuvovakuutukset",
-                bgcolor: "white"
-            },
-
-            {
-                name: "Moottoripyörä",
-                category: "Ajoneuvovakuutukset",
-                bgcolor: "white"
-            },
-
-            {
-                name: "Mopo, Mönkijä, Traktori, Moottorikelkka",
-                category: "Ajoneuvovakuutukset",
-                bgcolor: "white"
-            },
-
-            {
-                name: "Matkailuauto",
-                category: "Ajoneuvovakuutukset",
-                bgcolor: "white"
-            },
-
-            {
-                name: "Matkailuvaunu",
-                category: "Ajoneuvovakuutukset",
-                bgcolor: "white"
-            },
-
-            {
-                name: "Perävaunu",
-                category: "Ajoneuvovakuutukset",
-                bgcolor: "white"
-            },
-
-            {
-                name: "Vene",
-                category: "Ajoneuvovakuutukset",
-                bgcolor: "white"
-            },
-
-            {
-                name: "Kuorma-auto",
-                category: "Ajoneuvovakuutukset",
-                bgcolor: "white"
-            },
-
-            {
-                name: "Kerros- ja rivitalo",
-                category: "Kotivakuutukset",
-                bgcolor: "white"
-            },
-
-            {
-                name: "Omakotitalo",
-                category: "Kotivakuutukset",
-                bgcolor: "white"
-            },
-
-            {
-                name: "Paritalo",
-                category: "Kotivakuutukset",
-                bgcolor: "white"
-            },
-
-            {
-                name: "Mökki",
-                category: "Kotivakuutukset",
-                bgcolor: "white"
-            },
-
-            {
-                name: "Sijoitusasunto",
-                category: "Kotivakuutukset",
-                bgcolor: "white"
-            },
-
-            {
-                name: "Koira",
-                category: "Eläimet",
-                bgcolor: "white"
-            },
-
-            {
-                name: "Kissa",
-                category: "Eläimet",
-                bgcolor: "white"
-            },
-
-            {
-                name: "Hevonen",
-                category: "Eläimet",
-                bgcolor: "white"
-            },
-
-        ],
-        price: 0
+        price: 0,
+        insurances: []
     };
+
+    componentDidMount() {
+        axios.get('http://localhost:4000/insurancetypes')
+            .then(res => {
+                let insurances = res.data;
+
+                for (let i = 0; i < insurances.length; i++) {
+                    insurances[i].category = insurances[i].insurancetype;
+                    insurances[i].price = 3;
+                }
+
+                this.setState({insurances: insurances});
+            });
+    }
 
     onDragOver = (e) => {
         e.preventDefault();
-    }
+    };
 
     onDragStart = (e, id) => {
         e.dataTransfer.setData("id", id);
-    }
+    };
 
     onDrop = (ev, cat) => {
         let id = ev.dataTransfer.getData("id");
-        let vakuutukset = this.state.insurances.filter((task) => {
+        let vakuutukset = this.state.insurances.filter(task => {
             if (task.name == id) {
                 task.category = cat;
                 this.state.price += task.price;
@@ -172,42 +42,56 @@ class DragandDrop extends Component {
         });
         this.setState({
             ...this.state,
-            insurances: insurances
+            insurances: vakuutukset
         });
-    }
+    };
 
     render() {
+        let insObject = {valitut: []};
+        let categories = [];
 
-        var vakuutukset = {
-            Henkilövakuutukset: [],
-            Ajoneuvovakuutukset: [],
-            Kotivakuutukset: [],
-            Eläimet: [],
-            valitut: []
-        }
+        this.state.insurances.forEach(insurance => {
+            let field = insurance.category;
+            console.log(field);
 
-        this.state.insurances.forEach(t => {
+            if (!(field in insObject)) {
+                insObject[field] = [];
+                categories.push(field);
+            }
 
-            vakuutukset[t.category].push(
-                <div key={t.name}
-                     onDragStart={(e) => this.onDragStart(e, t.name)}
+            insObject[field].push(
+                <div key={insurance.name}
+                     onDragStart={(e) => this.onDragStart(e, insurance.name)}
                      draggable
-                     className="draggable" style={{backgroundColor: t.bgcolor}}>
-                    {t.name}
+                     className="draggable" style={{backgroundColor: "yellow"}}>
+                    {insurance.name}
                 </div>
             );
+        });
+
+        let categoriesToPage = categories.map(category => {
+            return (
+                <Col xs={12} sm={4}>
+                    <div className="insurance_category" onDragOver={(e) => this.onDragOver(e)} onDrop={e => {
+                        this.onDrop(e, category)
+                    }}>
+                        <h3>{category}</h3>
+                        {insObject[category]}
+                    </div>
+                </Col>
+            )
         });
 
         //TODO: Korjaa post-pyyntö. Nyt se ei lähde mihinkään.
         //Seuraava funktio katsoo, mitkä ovat valitut ja sen jälkeen lähettää tiedot palvelimelle.
         //Palvelinkutsu ei vielä toimi, mutta se nyt on vain viilauskysymys (lähettää nyt muutenkin ihan dummy-apiin tietoa)
         const sendChosenInsurancestoTheServer = (req) => {
-            var insurancesToBeCalculated = [];
-            for (var i = 0; i < vakuutukset.valitut.length; i++) {
-                insurancesToBeCalculated.push(vakuutukset.valitut[i].key)
+            let insurancesToBeCalculated = [];
+            for (let i = 0; i < insObject.valitut.length; i++) {
+                insurancesToBeCalculated.push(insObject.valitut[i].key)
             }
             console.log(insurancesToBeCalculated);
-            var data = JSON.stringify(insurancesToBeCalculated);
+            let data = JSON.stringify(insurancesToBeCalculated);
             console.log(data);
             axios.post('http://localhost:4000/calculator', {
                 body: data
@@ -222,7 +106,8 @@ class DragandDrop extends Component {
               return response;
             });
             */
-        }
+        };
+
         let priceData;
         if (this.state.price > 0 && this.state.price < 14) {
             priceData = <h1> Arvioitu hinta: {this.state.price} </h1>
@@ -236,7 +121,6 @@ class DragandDrop extends Component {
         }
 
         return (
-
             <div>
                 <h1 className="header">Vakuutukset</h1>
                 {priceData}
@@ -247,51 +131,10 @@ class DragandDrop extends Component {
                             <h4>Pudota vakuutukset tähän</h4>
                             <Button bsClass="insurance_button"
                                     onClick={sendChosenInsurancestoTheServer.bind(this)}> Submit </Button>
-                            {vakuutukset.valitut}
+                            {insObject.valitut}
                         </div>
-                        <Col xs={12} sm={4}>
-                            <div className="insurance_category" onDragOver={(e) => this.onDragOver(e)}
-                                 onDrop={(e) => {
-                                     this.onDrop(e, "Henkilövakuutukset")
-                                 }}>
-                                <h3>Henkilövakuutukset</h3>
-                                {vakuutukset.Henkilövakuutukset}
-                            </div>
-                        </Col>
-
-                        <Col xs={12} sm={4}>
-                            <div className="insurance_category" onDragOver={(e) => this.onDragOver(e)}
-                                 onDrop={(e) => {
-                                     this.onDrop(e, "Ajoneuvovakuutukset")
-                                 }}>
-                                <h3>Ajoneuvovakuutukset</h3>
-                                {vakuutukset.Ajoneuvovakuutukset}
-                            </div>
-                        </Col>
-
-                        <Col xs={12} sm={4}>
-                            <div className="insurance_category" onDragOver={(e) => this.onDragOver(e)}
-                                 onDrop={(e) => {
-                                     this.onDrop(e, "Kotivakuutukset")
-                                 }}>
-                                <h3>Kotivakuutukset</h3>
-                                {vakuutukset.Kotivakuutukset}
-                            </div>
-                        </Col>
+                        {categoriesToPage}
                     </Row>
-
-                    <Row className="show-grid cards text-center">
-                        <Col xs={12} sm={4}>
-                            <div className="insurance_category" onDragOver={(e) => this.onDragOver(e)}
-                                 onDrop={(e) => {
-                                     this.onDrop(e, "Eläimet")
-                                 }}>
-                                <h3>Eläinvakuutus</h3>
-                                {vakuutukset.Eläimet}
-                            </div>
-                        </Col>
-                    </Row>
-
                 </Grid>
             </div>
         );
