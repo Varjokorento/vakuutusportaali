@@ -15,8 +15,14 @@ class DragandDrop extends Component {
                 let insurances = res.data;
 
                 for (let i = 0; i < insurances.length; i++) {
-                    insurances[i].category = insurances[i].insurancetype;
-                    insurances[i].price = 3;
+                    let insurance = insurances[i];
+                    insurance.category = insurances[i].insurancetype;
+                    if (insurance.price) {
+                        console.log(insurance.price)
+                    }
+                    else {
+                        insurance.price = 50;
+                    }
                 }
 
                 this.setState({insurances: insurances});
@@ -36,6 +42,7 @@ class DragandDrop extends Component {
         let vakuutukset = this.state.insurances.filter(task => {
             if (task.name == id) {
                 task.category = cat;
+                //TODO: laske hinta muulla tavalla, nyt hinta nousee vaikka vakuutuksia vain raahaa kentän sisällä
                 this.state.price += task.price;
             }
             return task;
@@ -60,7 +67,7 @@ class DragandDrop extends Component {
             }
 
             insObject[field].push(
-                <div key={insurance.name}
+                <div key={insurance._id}
                      onDragStart={(e) => this.onDragStart(e, insurance.name)}
                      draggable
                      className="draggable" style={{backgroundColor: "yellow"}}>
@@ -71,7 +78,7 @@ class DragandDrop extends Component {
 
         let categoriesToPage = categories.map(category => {
             return (
-                <Col xs={12} sm={4}>
+                <Col xs={12} sm={4} key={category}>
                     <div className="insurance_category" onDragOver={(e) => this.onDragOver(e)} onDrop={e => {
                         this.onDrop(e, category)
                     }}>
@@ -98,32 +105,16 @@ class DragandDrop extends Component {
             }).then((res) => {
                 console.log(res)
             });
-            /*
-            fetch('http://localhost:4000/calculator', {
-              method: 'post',
-              body: data
-            }).then(function(response) {
-              return response;
-            });
-            */
         };
 
-        let priceData;
-        if (this.state.price > 0 && this.state.price < 14) {
-            priceData = <h1> Arvioitu hinta: {this.state.price} </h1>
-        } else if (this.state.price > 14) {
-            let originalPrice = this.state.price;
-            this.state.price = this.state.price * 0.75;
-            let discount = originalPrice - this.state.price;
-            priceData = <h1> Arvioitu hinta: {this.state.price} SAIT MEGA-ALENNUKSEN ARVOLTAAN: {discount} </h1>
-        } else {
-            priceData = <p></p>
-        }
+
+        let price = this.state.price;
 
         return (
             <div>
                 <h1 className="header">Vakuutukset</h1>
-                {priceData}
+                <h1>Arvioitu hinta: {price} euroa</h1>
+
                 <Grid fluid className="info_cards">
                     <Row className="show-grid cards text-center">
                         <div className="droppable" onDragOver={(e) => this.onDragOver(e)}
