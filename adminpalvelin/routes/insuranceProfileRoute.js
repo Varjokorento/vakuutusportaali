@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const profiledbservice = require('../services/profileAdminDBservice');
+const insuranceDBservice = require('../services/insuranceAdminDBservice');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const keys = require('../config/keys');
@@ -23,16 +24,13 @@ router.get('/:id', passport.authenticate('jwt',
 //Private
 
 
-router.get('/:id/paivita', (req, res, next) => {
-    res.json("this updates insurance")
-})
 
-router.post('/:id/paivitatietoja', (req, res, next) => {
-    res.json("this updates information")
+
+router.post('/updatecustomer', (req, res, next) => {
+    profiledbservice.updateCustomerById(req.body)
 })
 
 router.post('/createProfile', (req, res) => {
-
     User.findOne({email: req.body.email})
         .then(user => {
             if(user) {

@@ -21,14 +21,16 @@ router.get('/id/:id', passport.authenticate('jwt',
 
 router.get('/customer/:id', passport.authenticate('jwt',
 {session: false}), (req, res) => {
-
         insurancedbservice.findAllByUserID(req, res)
 });
 
 //@Route /omavakuutus/:vakuutusID
 //GET this shows the information of one information
 //Private
+router.post('/update', (req, res, next) => {
 
+    insurancedbservice.updateOneById(req.body)
+});
 
 
 

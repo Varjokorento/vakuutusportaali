@@ -47,12 +47,16 @@ class PageNavigation extends Component {
                         <NavItem eventKey={2} componentClass={Link} href="/vakuutukset" to="/vakuutukset">
                             Vakuutukset
                         </NavItem>
+                        <NavItem eventKey={6} componentClass={Link} href="/" to="/laskevakuutus">
+                            Vakuutuslaskuri
+                        </NavItem>
                         <NavItem eventKey={3} componentClass={Link} href="/" to="/omavakuutus">
                             Oma sivu
                         </NavItem>
                         <NavItem eventKey={4} componentClass={Link} href="#" to="#" onClick={this.onLogoutClick.bind(this)}>
                             Kirjaudu ulos
                         </NavItem>
+                        
                     </Nav>
                 </Navbar.Collapse>
          
