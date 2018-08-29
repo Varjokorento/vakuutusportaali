@@ -1,15 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const adminDBservice = require('../databaseServices/adminDBservice');
+const adminDBservice = require('../services/adminDBservice');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const keys = require('../config/keys');
 const passport = require('passport');
 const Admin = require('../models/Admin');
 
-
-
-router.get('/profile',passport.authenticate('jwt',
+router.get('/profile', passport.authenticate('jwt',
 {session: false}), (req, res, next) => {
     adminDBservice.findOneById(req, res);
 })
@@ -21,8 +19,7 @@ router.post('/register', (req, res) => {
             if(admin) {
                 error.email = 'Email already exists';
                 return res.status(400);
-            } else {
-        
+            } else { 
                 const newAdmin = new Admin({
                     email: req.body.email,
                     password: req.body.password
@@ -33,7 +30,7 @@ router.post('/register', (req, res) => {
                         if(err) throw err;
                         newAdmin.password = hash;
                         newAdmin.save()
-                            .then( user => res.json(user))
+                            .then( admin => res.json(admin))
                             .catch(err => console.log(err));
                         })
                 } 
@@ -49,7 +46,7 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
-    // Find user by email TODO REPLACE WITH OAUTH
+    // Find ADMIN by email TODO REPLACE WITH OAUTH
     Admin.findOne({ email }).then(admin => {
       // Check for user
       if (!admin) {

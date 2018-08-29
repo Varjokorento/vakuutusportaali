@@ -15,10 +15,6 @@ const AdminSchema = new Schema({
      date: {
          type: Date,
          default: Date.now
-     },
-     insuranceClaims: {
-        type: Schema.Types.ObjectId,
-        ref: 'insurances'
      }
     });
     
