@@ -1,5 +1,5 @@
 module.exports = {
-  entry: ['./src/index.js'],
+  entry: ['./src/insuTypeRoute.js'],
   output: {
     path: __dirname,
     publicPath: '/',
